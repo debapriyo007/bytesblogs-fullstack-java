@@ -1,0 +1,1202 @@
+{
+	"info": {
+		"_postman_id": "blog-app-rest-api-collection",
+		"name": "Blog REST API",
+		"description": "Complete collection to test all endpoints of the Spring Boot 3 / Java 25 Blog REST API, including automated JWT extraction for authenticated operations, likes, comments, tags, and admin dashboards.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register Standard User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"john_doe\",\n  \"email\": \"john@gmail.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Admin User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"admin_user\",\n  \"email\": \"admin@blogapp.com\",\n  \"password\": \"adminpassword\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.success && jsonData.data && jsonData.data.token) {",
+									"    pm.collectionVariables.set(\"jwtToken\", jsonData.data.token);",
+									"    console.log(\"Saved standard user JWT token successfully.\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"john@gmail.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.success && jsonData.data && jsonData.data.token) {",
+									"    pm.collectionVariables.set(\"jwtToken\", jsonData.data.token);",
+									"    console.log(\"Saved administrator JWT token successfully.\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@blogapp.com\",\n  \"password\": \"adminpassword\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Create Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Spring Boot\",\n  \"description\": \"Guides and tutorials on building Java applications with Spring Boot 3\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Spring Boot 3\",\n  \"description\": \"Guides on building robust secure applications with Spring Boot 3 & Security 6\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/categories/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/categories/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Blogs",
+			"item": [
+				{
+					"name": "Create Blog Post (Manual Category & Tags)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Mastering Spring Security 6",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "This guide provides an in-depth explanation of custom Filters, UserDetailsService configurations, and stateless sessions.",
+									"type": "text"
+								},
+								{
+									"key": "excerpt",
+									"value": "A deep dive into security filters and stateless authentication flows.",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "PUBLISHED",
+									"type": "text"
+								},
+								{
+									"key": "categoryName",
+									"value": "Software Engineering",
+									"type": "text"
+								},
+								{
+									"key": "tagIds",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "tagIds",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "imageFile",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/blogs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"blogs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Blogs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/blogs?page=0&size=10&sortBy=createdAt&direction=desc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"blogs"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "sortBy",
+									"value": "createdAt"
+								},
+								{
+									"key": "direction",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Blog by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/blogs/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Blogs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/blogs/search?keyword=security&page=0&size=5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "security"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Blogs by Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/blogs/category/1?page=0&size=5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								"category",
+								"1"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Blog Post (Manual Category & Tags)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Mastering Spring Security 6 (Updated Edition)",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Revised content covering Java 25 features, patterns, and security managers.",
+									"type": "text"
+								},
+								{
+									"key": "excerpt",
+									"value": "A revised deep dive into security filters and authentication flows.",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "PUBLISHED",
+									"type": "text"
+								},
+								{
+									"key": "categoryName",
+									"value": "Java Web Programming",
+									"type": "text"
+								},
+								{
+									"key": "tagIds",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "tagIds",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "imageFile",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/blogs/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Blog Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/blogs/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like Blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/blogs/1/like",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								"1",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unlike Blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/blogs/1/like",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								"1",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Like Count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/blogs/1/likes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								"1",
+								"likes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check User Like Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/blogs/1/liked",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								"1",
+								"liked"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Comment to Blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\": \"Great article! Very well detailed!\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/blogs/1/comments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								"1",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Comments For Blog",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/blogs/1/comments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"blogs",
+								"1",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Update Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\": \"Updated comment content. Thanks!\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/comments/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/comments/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "Create Tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Java\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/tags",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Tags",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tags",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tag by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tags/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tags",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Java 25\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/tags/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tags",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tags/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tags",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users & Profile",
+			"item": [
+				{
+					"name": "Get Current Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"john_updated\",\n  \"email\": \"john_updated@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users?page=0&size=10&sortBy=createdAt&direction=desc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "sortBy",
+									"value": "createdAt"
+								},
+								{
+									"key": "direction",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Get User Count",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users/count",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"count"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Files",
+			"item": [
+				{
+					"name": "Upload File (Image)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/files/upload",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"files",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "jwtToken",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
