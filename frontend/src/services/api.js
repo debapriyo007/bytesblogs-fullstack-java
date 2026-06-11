@@ -15,7 +15,6 @@ async function request(url, options = {}) {
   // Handle unauthorized/session expiry
   if (response.status === 401 || response.status === 403) {
     if (!url.includes("/api/auth/login")) {
-      localStorage.removeItem("user")
       window.dispatchEvent(new Event("auth-changed"))
     }
   }
