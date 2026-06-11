@@ -1,4 +1,10 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || ""
+
 async function request(url, options = {}) {
+  const targetUrl = url.startsWith("/api") && !url.startsWith("http")
+    ? `${BASE_URL}${url}`
+    : url
+
   const headers = new Headers(options.headers || {})
 
   // Only set Content-Type to application/json if we are NOT sending FormData
@@ -6,7 +12,7 @@ async function request(url, options = {}) {
     headers.set("Content-Type", "application/json")
   }
 
-  const response = await fetch(url, {
+  const response = await fetch(targetUrl, {
     ...options,
     headers,
     credentials: "include",
@@ -21,17 +27,26 @@ async function request(url, options = {}) {
   }
 
   let result
+  const contentType = response.headers.get("content-type")
+  const isJson = contentType && contentType.includes("application/json")
+
   try {
-    result = await response.json()
+    if (isJson) {
+      result = await response.json()
+    } else {
+      const text = await response.text()
+      if (text.trim() === "") {
+        result = {
+          success: true,
+          message: "Operation completed",
+          data: null,
+        }
+      } else {
+        throw new Error("Server returned non-JSON response")
+      }
+    }
   } catch (err) {
-    if (!response.ok) {
-      throw new Error(`HTTP Error: ${response.status} ${response.statusText}`, { cause: err })
-    }
-    result = {
-      success: true,
-      message: "Operation completed",
-      data: null,
-    }
+    throw new Error(`Failed to parse server response: ${err.message}`, { cause: err })
   }
 
   if (!response.ok || !result.success) {
