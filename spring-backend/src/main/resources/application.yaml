@@ -4,7 +4,7 @@ server:
 
 spring:
   profiles:
-    active: dev
+    active: ${SPRING_PROFILES_ACTIVE:dev}
   application:
     name: blog-appV0.1
   datasource:
