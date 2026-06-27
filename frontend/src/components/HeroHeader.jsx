@@ -1,6 +1,6 @@
 import * as React from "react"
 
-const WORDS = ["bugblogs.", "tech insights.", "dev stories.", "creative columns."]
+const WORDS = ["bytesblogs.", "tech insights.", "dev stories.", "creative columns."]
 
 const TypingHeader = () => {
   const [currentWordIndex, setCurrentWordIndex] = React.useState(0)

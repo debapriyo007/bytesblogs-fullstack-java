@@ -40,10 +40,10 @@ export default function About() {
           The Developer Sanctuary
         </span>
         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50">
-          About <span style={{ fontFamily: "'Caveat', cursive" }} className="text-rose-600 font-bold">bugblogs<span className="text-rose-600">.</span></span>
+          About <span style={{ fontFamily: "'Caveat', cursive" }} className="text-rose-600 font-bold">bytesblogs<span className="text-rose-600">.</span></span>
         </h1>
         <p className="text-sm sm:text-base text-muted-foreground max-w-2xl leading-relaxed">
-          bugblogs is a publishing space built for developers, system engineers, and tech enthusiasts. 
+          bytesblogs is a publishing space built for developers, system engineers, and tech enthusiasts. 
           A platform to document bug-hunting expeditions, architecture reviews, and engineering logs in a clean, readable layout.
         </p>
       </section>
@@ -57,7 +57,7 @@ export default function About() {
           </h2>
           <div className="space-y-4 text-xs sm:text-sm text-muted-foreground leading-relaxed">
             <p>
-              Every developer has faced issues that took hours or days to solve, only to find no trace of documentation online. bugblogs was built to turn those frustrating moments into valuable learning resources.
+              Every developer has faced issues that took hours or days to solve, only to find no trace of documentation online. bytesblogs was built to turn those frustrating moments into valuable learning resources.
             </p>
             <p>
               By offering clean technical layouts—including an IDE-style code visualizer, syntax styling, and markdown editing tools—we make publishing technical guides feel natural and rewarding.

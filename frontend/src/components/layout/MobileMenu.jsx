@@ -31,7 +31,7 @@ export default function MobileMenu({ mobileMenuOpen, setMobileMenuOpen, navLinks
           <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-1 group">
             <LogoBug className="h-10 w-10 text-foreground transition-all duration-200 group-hover:scale-105" />
             <span className="font-bold text-2xl tracking-wide text-zinc-950 dark:text-zinc-50" style={{ fontFamily: "'Caveat', cursive" }}>
-              bugblogs<span className="text-rose-600">.</span>
+              bytesblogs<span className="text-rose-600">.</span>
             </span>
           </Link>
           <Button

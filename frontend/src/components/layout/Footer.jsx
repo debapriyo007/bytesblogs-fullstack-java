@@ -11,14 +11,14 @@ export default function Footer({ navLinks }) {
           <Link to="/" className="flex items-center gap-1 group shrink-0">
             <LogoBug className="h-10 w-10 text-white transition-all duration-200 group-hover:scale-105 shrink-0" />
             <span className="font-bold text-2xl tracking-wide text-white" style={{ fontFamily: "'Caveat', cursive" }}>
-              bugblogs<span className="text-rose-600">.</span>
+              bytesblogs<span className="text-rose-600">.</span>
             </span>
           </Link>
           <p className="text-xs text-zinc-400 leading-relaxed">
             A universal publishing space hosting diverse stories, columns, and insights. Empowering writers and tech enthusiasts.
           </p>
           <p className="text-[11px] text-zinc-500">
-            &copy; {new Date().getFullYear()} bugblogs. All rights reserved.
+            &copy; {new Date().getFullYear()} bytesblogs. All rights reserved.
           </p>
         </div>
 

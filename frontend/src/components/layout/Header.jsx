@@ -37,7 +37,7 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, navLinks }) 
         <Link to="/" className="flex items-center gap-0.5 group shrink-0">
           <LogoBug className="h-10 w-10 text-foreground transition-all duration-200 group-hover:scale-105 shrink-0" />
           <span className="font-bold text-2xl tracking-wide text-zinc-950 dark:text-zinc-50" style={{ fontFamily: "'Caveat', cursive" }}>
-            bugblogs<span className="text-rose-600">.</span>
+            bytesblogs<span className="text-rose-600">.</span>
           </span>
         </Link>
 

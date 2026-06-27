@@ -303,7 +303,7 @@ export default function AuthForm({
             {mode === "login" ? "Welcome back" : "Create your account"}
           </h2>
           <p className="text-sm text-muted-foreground font-medium">
-            {mode === "login" ? "Access your bugblogs publishing space" : "Join the bugblogs sharing community"}
+            {mode === "login" ? "Access your bytesblogs publishing space" : "Join the bytesblogs sharing community"}
           </p>
         </div>
 

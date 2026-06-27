@@ -388,7 +388,7 @@ export default function BlogDetail() {
           <div className="absolute inset-0 bg-gradient-to-tr from-zinc-100 to-zinc-200 dark:from-zinc-900 dark:to-zinc-800 flex flex-col items-center justify-center p-6 text-center select-none">
             <LogoBug className="h-16 w-16 mb-2 opacity-30" animated={false} />
             <span className="text-sm font-semibold tracking-wider text-zinc-400 uppercase">
-              bugblogs Premium Post
+              bytesblogs Premium Post
             </span>
           </div>
         )}

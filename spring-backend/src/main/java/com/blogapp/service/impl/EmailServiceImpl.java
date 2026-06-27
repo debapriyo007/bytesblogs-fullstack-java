@@ -20,7 +20,7 @@ public class EmailServiceImpl implements EmailService {
     @Autowired(required = false)
     private JavaMailSender mailSender;
 
-    @org.springframework.beans.factory.annotation.Value("${spring.mail.from:${spring.mail.username:noreply@bugblogs.com}}")
+    @org.springframework.beans.factory.annotation.Value("${spring.mail.from:${spring.mail.username:noreply@bytesblogs.com}}")
     private String fromEmail;
 
     @org.springframework.beans.factory.annotation.Value("${spring.mail.host:}")
@@ -49,7 +49,7 @@ public class EmailServiceImpl implements EmailService {
     private boolean sendViaBrevoApi(String toEmail, String subject, String htmlContent) {
         try {
             String payload = String.format(
-                "{\"sender\":{\"name\":\"bugblogs\",\"email\":\"%s\"},\"to\":[{\"email\":\"%s\"}],\"subject\":\"%s\",\"htmlContent\":\"%s\"}",
+                "{\"sender\":{\"name\":\"bytesblogs\",\"email\":\"%s\"},\"to\":[{\"email\":\"%s\"}],\"subject\":\"%s\",\"htmlContent\":\"%s\"}",
                 fromEmail,
                 toEmail,
                 escapeJson(subject),
@@ -93,7 +93,7 @@ public class EmailServiceImpl implements EmailService {
     @Override
     @org.springframework.scheduling.annotation.Async
     public void sendOtpEmail(String toEmail, String username, String otp) {
-        String subject = "Verify Your bugblogs Account";
+        String subject = "Verify Your bytesblogs Account";
         String htmlContent = loadOtpTemplate(username, otp);
 
         boolean emailSent = false;
@@ -106,7 +106,7 @@ public class EmailServiceImpl implements EmailService {
             try {
                 MimeMessage mimeMessage = mailSender.createMimeMessage();
                 MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-                helper.setFrom(fromEmail, "bugblogs");
+                helper.setFrom(fromEmail, "bytesblogs");
                 helper.setTo(toEmail);
                 helper.setSubject(subject);
                 helper.setText(htmlContent, true);
@@ -157,7 +157,7 @@ public class EmailServiceImpl implements EmailService {
             try {
                 MimeMessage mimeMessage = mailSender.createMimeMessage();
                 MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-                helper.setFrom(fromEmail, "bugblogs");
+                helper.setFrom(fromEmail, "bytesblogs");
                 helper.setTo(toEmail);
                 helper.setSubject(subject);
                 helper.setText(htmlContent, true);

@@ -7,7 +7,7 @@ export default function NotFound() {
   const navigate = useNavigate()
 
   React.useEffect(() => {
-    document.title = "Page Not Found | bugblogs"
+    document.title = "Page Not Found | bytesblogs"
   }, [])
 
   return (

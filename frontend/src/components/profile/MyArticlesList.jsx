@@ -119,7 +119,7 @@ export default function MyArticlesList({
                       <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-700 dark:from-zinc-900 dark:to-zinc-800 flex flex-col items-center justify-center p-4 text-center">
                         <LogoBug className="h-10 w-10 mb-1 opacity-40" animated={false} />
                         <span className="text-[9px] font-semibold text-muted-foreground/50 uppercase tracking-widest">
-                          bugblogs Article
+                          bytesblogs Article
                         </span>
                       </div>
                     )}

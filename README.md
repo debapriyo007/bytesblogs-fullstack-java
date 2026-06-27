@@ -1,6 +1,6 @@
-# BugBlogs: Full-Stack Developer Blog Platform
+# BytesBlogs: Full-Stack Developer Blog Platform
 
-BugBlogs is a high-performance, full-stack blogging application tailored for developers. It features a modern React Single Page Application (SPA) frontend and a secure, robust Spring Boot backend. Authors can write posts in Markdown with live syntax highlighting, organize content via categories and tags, upload images to Cloudinary, sign in with Google OAuth2 or OTP-verified email verification, and administrators can manage users and posts using a sleek analytics-enabled dashboard.
+BytesBlogs is a high-performance, full-stack blogging application tailored for developers. It features a modern React Single Page Application (SPA) frontend and a secure, robust Spring Boot backend. Authors can write posts in Markdown with live syntax highlighting, organize content via categories and tags, upload images to Cloudinary, sign in with Google OAuth2 or OTP-verified email verification, and administrators can manage users and posts using a sleek analytics-enabled dashboard.
 
 ---
 
@@ -164,7 +164,7 @@ For deployments or container overrides, configure the variables listed below:
 | `MAIL_PORT` | SMTP Server Connection Port | `587` |
 | `MAIL_USERNAME` | Mailer account username | `example@gmail.com` |
 | `MAIL_PASSWORD` | Mailer account SMTP password / app password | `your-app-password` |
-| `MAIL_FROM` | Origin mail address for notifications | `no-reply@bugblogs.com` |
+| `MAIL_FROM` | Origin mail address for notifications | `no-reply@bytesblogs.com` |
 | `CLOUDINARY_CLOUD_NAME` | Cloudinary Account Cloud Name | `your-cloud-name` |
 | `CLOUDINARY_API_KEY` | Cloudinary API Key | `your-api-key` |
 | `CLOUDINARY_API_SECRET` | Cloudinary API Secret Key | `your-api-secret` |
