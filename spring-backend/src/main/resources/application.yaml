@@ -4,6 +4,9 @@ server:
   tomcat:
     remoteip:
       internal-proxies: ".*"
+      protocol-header: "x-forwarded-proto"
+      port-header: "x-forwarded-port"
+      remote-ip-header: "x-forwarded-for"
 
 spring:
   profiles:
