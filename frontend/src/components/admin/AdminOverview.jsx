@@ -49,53 +49,53 @@ export default function AdminOverview({
       {/* KPI Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Total Members */}
-        <Card className="border border-blue-100/80 dark:border-blue-900/30 bg-gradient-to-br from-blue-50/40 to-indigo-50/40 dark:from-blue-950/10 dark:to-indigo-950/10 backdrop-blur-sm shadow-none rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:shadow-blue-500/5 hover:border-blue-300 dark:hover:border-blue-800 hover:from-blue-50/70 hover:to-indigo-50/70 dark:hover:from-blue-950/20 dark:hover:to-indigo-950/20 group">
+        <Card className="border border-blue-600/20 bg-gradient-to-br from-blue-600 to-indigo-700 dark:from-blue-700 dark:to-indigo-850 shadow-none rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-600/20 hover:from-blue-500 hover:to-indigo-600 group text-white">
           <CardContent className="pt-6 flex items-center justify-between">
             <div className="space-y-1">
-              <span className="text-[10px] font-bold text-blue-700/80 dark:text-blue-400/80 uppercase tracking-wider">Total Members</span>
-              <h3 className="text-2xl font-extrabold text-zinc-900 dark:text-zinc-50">{userCount}</h3>
+              <span className="text-[10px] font-bold text-blue-100/80 uppercase tracking-wider">Total Members</span>
+              <h3 className="text-2xl font-extrabold text-white">{userCount}</h3>
             </div>
-            <div className="h-9 w-9 rounded-lg bg-blue-100/50 dark:bg-blue-900/30 flex items-center justify-center border border-blue-200/50 dark:border-blue-800/30 transition-all duration-300 group-hover:bg-blue-600 dark:group-hover:bg-blue-500 group-hover:text-white group-hover:border-blue-600 dark:group-hover:border-blue-500">
-              <Users className="h-4 w-4 text-blue-600 dark:text-blue-400 group-hover:text-white transition-colors duration-300" />
+            <div className="h-9 w-9 rounded-lg bg-white/15 dark:bg-white/10 flex items-center justify-center border border-white/10 transition-all duration-300 group-hover:bg-white group-hover:text-blue-600 group-hover:border-white">
+              <Users className="h-4 w-4 text-white group-hover:text-blue-600 transition-colors duration-300" />
             </div>
           </CardContent>
         </Card>
 
         {/* Total Blogs */}
-        <Card className="border border-emerald-100/80 dark:border-emerald-900/30 bg-gradient-to-br from-emerald-50/40 to-teal-50/40 dark:from-emerald-950/10 dark:to-teal-950/10 backdrop-blur-sm shadow-none rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:shadow-emerald-500/5 hover:border-emerald-300 dark:hover:border-emerald-800 hover:from-emerald-50/70 hover:to-teal-50/70 dark:hover:from-emerald-950/20 dark:hover:to-teal-950/20 group">
+        <Card className="border border-emerald-600/20 bg-gradient-to-br from-emerald-600 to-teal-700 dark:from-emerald-700 dark:to-teal-850 shadow-none rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-600/20 hover:from-emerald-500 hover:to-teal-600 group text-white">
           <CardContent className="pt-6 flex items-center justify-between">
             <div className="space-y-1">
-              <span className="text-[10px] font-bold text-emerald-700/80 dark:text-emerald-400/80 uppercase tracking-wider">Total Blogs</span>
-              <h3 className="text-2xl font-extrabold text-zinc-900 dark:text-zinc-50">{blogsTotalElements}</h3>
+              <span className="text-[10px] font-bold text-emerald-100/80 uppercase tracking-wider">Total Blogs</span>
+              <h3 className="text-2xl font-extrabold text-white">{blogsTotalElements}</h3>
             </div>
-            <div className="h-9 w-9 rounded-lg bg-emerald-100/50 dark:bg-emerald-900/30 flex items-center justify-center border border-emerald-200/50 dark:border-emerald-800/30 transition-all duration-300 group-hover:bg-emerald-600 dark:group-hover:bg-emerald-500 group-hover:text-white group-hover:border-emerald-600 dark:group-hover:border-emerald-500">
-              <BookOpen className="h-4 w-4 text-emerald-600 dark:text-emerald-400 group-hover:text-white transition-colors duration-300" />
+            <div className="h-9 w-9 rounded-lg bg-white/15 dark:bg-white/10 flex items-center justify-center border border-white/10 transition-all duration-300 group-hover:bg-white group-hover:text-emerald-600 group-hover:border-white">
+              <BookOpen className="h-4 w-4 text-white group-hover:text-emerald-600 transition-colors duration-300" />
             </div>
           </CardContent>
         </Card>
 
         {/* Total Reads */}
-        <Card className="border border-violet-100/80 dark:border-violet-900/30 bg-gradient-to-br from-violet-50/40 to-purple-50/40 dark:from-violet-950/10 dark:to-purple-950/10 backdrop-blur-sm shadow-none rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:shadow-violet-500/5 hover:border-violet-300 dark:hover:border-violet-800 hover:from-violet-50/70 hover:to-purple-50/70 dark:hover:from-violet-950/20 dark:hover:to-purple-950/20 group">
+        <Card className="border border-violet-600/20 bg-gradient-to-br from-violet-600 to-purple-700 dark:from-violet-700 dark:to-purple-850 shadow-none rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet-600/20 hover:from-violet-500 hover:to-purple-600 group text-white">
           <CardContent className="pt-6 flex items-center justify-between">
             <div className="space-y-1">
-              <span className="text-[10px] font-bold text-violet-700/80 dark:text-violet-400/80 uppercase tracking-wider">Total Reads</span>
-              <h3 className="text-2xl font-extrabold text-zinc-900 dark:text-zinc-50">{totalViews.toLocaleString()}</h3>
+              <span className="text-[10px] font-bold text-violet-100/80 uppercase tracking-wider">Total Reads</span>
+              <h3 className="text-2xl font-extrabold text-white">{totalViews.toLocaleString()}</h3>
             </div>
-            <div className="h-9 w-9 rounded-lg bg-violet-100/50 dark:bg-violet-900/30 flex items-center justify-center border border-violet-200/50 dark:border-violet-800/30 transition-all duration-300 group-hover:bg-violet-600 dark:group-hover:bg-violet-500 group-hover:text-white group-hover:border-violet-600 dark:group-hover:border-violet-500">
-              <Eye className="h-4 w-4 text-violet-600 dark:text-violet-400 group-hover:text-white transition-colors duration-300" />
+            <div className="h-9 w-9 rounded-lg bg-white/15 dark:bg-white/10 flex items-center justify-center border border-white/10 transition-all duration-300 group-hover:bg-white group-hover:text-violet-600 group-hover:border-white">
+              <Eye className="h-4 w-4 text-white group-hover:text-violet-600 transition-colors duration-300" />
             </div>
           </CardContent>
         </Card>
 
         {/* Avg Views */}
-        <Card className="border border-amber-100/80 dark:border-amber-900/30 bg-gradient-to-br from-amber-50/40 to-orange-50/40 dark:from-amber-950/10 dark:to-orange-950/10 backdrop-blur-sm shadow-none rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:shadow-amber-500/5 hover:border-amber-300 dark:hover:border-amber-800 hover:from-amber-50/70 hover:to-orange-50/70 dark:hover:from-amber-950/20 dark:hover:to-orange-950/20 group">
+        <Card className="border border-amber-600/20 bg-gradient-to-br from-amber-600 to-orange-700 dark:from-amber-700 dark:to-orange-850 shadow-none rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-600/20 hover:from-amber-500 hover:to-orange-600 group text-white">
           <CardContent className="pt-6 flex items-center justify-between">
             <div className="space-y-1">
-              <span className="text-[10px] font-bold text-amber-700/80 dark:text-amber-400/80 uppercase tracking-wider">Avg views / blog</span>
-              <h3 className="text-2xl font-extrabold text-zinc-900 dark:text-zinc-50">{avgViews}</h3>
+              <span className="text-[10px] font-bold text-amber-100/80 uppercase tracking-wider">Avg views / blog</span>
+              <h3 className="text-2xl font-extrabold text-white">{avgViews}</h3>
             </div>
-            <div className="h-9 w-9 rounded-lg bg-amber-100/50 dark:bg-amber-900/30 flex items-center justify-center border border-amber-200/50 dark:border-amber-800/30 transition-all duration-300 group-hover:bg-amber-600 dark:group-hover:bg-amber-500 group-hover:text-white group-hover:border-amber-600 dark:group-hover:border-amber-500">
-              <TrendingUp className="h-4 w-4 text-amber-600 dark:text-amber-400 group-hover:text-white transition-colors duration-300" />
+            <div className="h-9 w-9 rounded-lg bg-white/15 dark:bg-white/10 flex items-center justify-center border border-white/10 transition-all duration-300 group-hover:bg-white group-hover:text-amber-600 group-hover:border-white">
+              <TrendingUp className="h-4 w-4 text-white group-hover:text-amber-600 transition-colors duration-300" />
             </div>
           </CardContent>
         </Card>
